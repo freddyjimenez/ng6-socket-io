@@ -69,22 +69,23 @@ export class ChatService {
 In this case we do not configure the `SocketIoModule` directly using `forRoot`. What we have to do is: extend the `Socket` service, and call `super()` with the `SocketIoConfig` object type (passing `url` & `options` if any).
 
 ```ts
-import { Injectable, NgModule } from '@angular/core';
+import { Injectable, NgModule, NgZone } from '@angular/core';
 import { Socket } from 'ng6-socket-io';
 
 @Injectable()
 export class SocketOne extends Socket {
-  constructor() {
-    super({ url: 'http://url_one:portOne', options: {} });
+  constructor(ngZone: NgZone) {
+    super(ngZone);
+    this.init({ url: 'http://url_one:portOne', options: {} });
   }
 }
 
 @Injectable()
 export class SocketTwo extends Socket {
-  constructor() {
-    super({ url: 'http://url_two:portTwo', options: {} });
+  constructor(ngZone: NgZone) {
+    super(ngZone);
+    this.init({ url: 'http://url_two:portTwo', options: {} });
   }
-
   sendMessage(msg: string) {
     this.emit('message', msg);
   }
