@@ -6,7 +6,8 @@ export declare class WrappedSocket {
   subscribersCounter: number;
   ioSocket: any;
 
-  constructor(config: SocketIoConfig, ngZone: NgZone);
+  constructor(ngZone: NgZone);
+  init(config: SocketIoConfig);
 
   on(eventName: string, callback: Function): void;
 

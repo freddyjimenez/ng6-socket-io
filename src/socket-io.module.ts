@@ -6,7 +6,9 @@ import { SocketIoConfig } from './socketIoConfig';
 
 /** Socket factory */
 export function SocketFactory(config: SocketIoConfig, ngZone: NgZone) {
-  return new WrappedSocket(config, ngZone);
+  const wrappedSocket = new WrappedSocket(ngZone);
+  wrappedSocket.init(config);
+  return wrappedSocket;
 }
 
 export const SOCKET_CONFIG_TOKEN = new InjectionToken<SocketIoConfig>('__SOCKET_IO_CONFIG__');

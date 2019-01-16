@@ -11,15 +11,15 @@ export class WrappedSocket {
   subscribersCounter = 0;
   ioSocket: any;
 
-  constructor(@Inject(SOCKET_CONFIG_TOKEN) config: SocketIoConfig,
-              ngZone: NgZone) {
+  constructor(private ngZone: NgZone) {
+  }
+  init(@Inject(SOCKET_CONFIG_TOKEN) config: SocketIoConfig){
     const url: string = config.url || '';
     const options: any = config.options || {};
-    ngZone.runOutsideAngular(() => {
-      this.ioSocket = io(url, options);
-    });
+    this.ngZone.runOutsideAngular(() => {
+        this.ioSocket = io(url, options);
+      });
   }
-
   on(eventName: string, callback: Function) {
     this.ioSocket.on(eventName, callback);
   }
