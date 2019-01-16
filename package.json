@@ -1,6 +1,6 @@
 {
   "name": "ng6-socket-io",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage": "https://github.com/vrn-dev/ng6-socket-io",
   "description": "Socket.IO Module for Angular 6 and RxJS6",
   "license": "MIT",
@@ -31,7 +31,8 @@
     "ng-socket-io"
   ],
   "scripts": {
-    "test": "jasmine ./spec/socket.spec.js"
+    "test": "jasmine ./spec/socket.spec.js",
+    "build": "tsc"
   },
   "dependencies": {
     "@types/socket.io-client": "^1.4.32",
